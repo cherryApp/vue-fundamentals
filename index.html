@@ -10,9 +10,6 @@
             <div class="header">
                 <h1>{{ header.toLocaleUpperCase() }}</h1>
             </div>
-            <ul>
-                <li v-for="item in items">{{ item.label }}</li>
-            </ul>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script>
@@ -20,23 +17,6 @@
                 el: '#shopping-list',
                 data: {
                     header: 'shopping list app',                    
-                    items: [
-                        {
-                            label: '10 party hats',
-                            purchased: false,
-                            highPriority: false,
-                        },
-                        {
-                            label: '2 board games',
-                            purchased: true,
-                            highPriority: false,
-                        },
-                        {
-                            label: '20 cups',
-                            purchased: false,
-                            highPriority: false,
-                        },
-                    ],
                 },
             });
         </script>
