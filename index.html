@@ -32,18 +32,23 @@
         </button>
       </div>
       <ul>
-        <li
-          v-for="item in sortedItems"
-          :title="item.label"
-          @click="togglePurchased(item)"
-          :class="{strikeout: item.purchased}"
-        >
-          {{ item.label }}
-        </li>
+        <item v-for="item in sortedItems" :product="item"></item>
       </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
+      Vue.component('item', {
+        props: ['product'],
+        template: `<li :class="{strikeout: product.purchased}" @click="togglePurchased(product)">
+          {{ product.label }}
+        </li>`,
+        methods: {
+          togglePurchased: (item) => {
+            item.purchased = !item.purchased;
+          }
+        }
+      });
+
       var shoppingList = new Vue({
         el: '#shopping-list',
         data: {
