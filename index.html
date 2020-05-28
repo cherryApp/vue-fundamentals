@@ -33,7 +33,7 @@
       </div>
       <ul>
         <li
-          v-for="item in items"
+          v-for="item in sortedItems"
           :title="item.label"
           @click="togglePurchased(item)"
           :class="{strikeout: item.purchased}"
@@ -50,6 +50,7 @@
           state: 'default',
           header: 'shopping list app',
           newItem: '',
+          sortDirection: 1,
           items: [
             {
               label: '10 party hats',
@@ -67,6 +68,16 @@
               highPriority: false,
             },
           ],
+        },
+        computed: {
+            reversedItems() {
+                return this.items.slice(0).reverse();
+            },
+            sortedItems() {
+                return this.items.slice(0).sort( (a, b) => {
+                  return a.label.localeCompare(b.label);
+                })
+            }
         },
         methods: {
           addItem: function () {
